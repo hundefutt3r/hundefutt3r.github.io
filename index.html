@@ -1,0 +1,63 @@
+
+<html>
+<head>
+ <script src="https://aframe.io/releases/0.8.2/aframe.min.js"></script>
+  <script src="https://unpkg.com/aframe-forcegraph-component/dist/aframe-forcegraph-component.min.js"></script>
+    <script src='https://code.jquery.com/jquery-3.3.1.min.js'></script>
+    <!--<script src="https://cdn.rawgit.com/jeromeetienne/AR.js/1.5.0/aframe/build/aframe-ar.js"> </script>-->
+  <script>
+
+ AFRAME.registerComponent('cursor-listener', {
+  init: function () {
+
+    this.el.addEventListener('click', function (evt) {
+
+        var nodes = "";
+        var links = ""
+        var amount = 100;
+
+        for (var i = 0; i < amount; i++){
+            var size = Math.floor(Math.random()*1000);
+            console.log(size);
+            var group = Math.floor(Math.random()*3);
+            var a = Math.floor(Math.random() * amount);
+            var b = Math.floor(Math.random() * 40);
+            nodes += "{\"id\":\""+i+"\", \"size\":\""+size+"\", \"group\":\""+group+"\"},";
+            links += "{\"source\": \""+a+"\", \"target\": \""+b+"\"},";
+        }
+        nodes = "[" + nodes.substring(0, nodes.length-1) + "]" ;
+        links = "[" + links.substring(0, links.length-1) + "]";
+
+
+      var forcegraph_attributes = "link-curvature: 0.5;  node-label: id; node-auto-color-by: group; link-directional-arrow-length: 1.5; link-directional-arrow-rel-pos: 1;"
+      //var nodes = '[{"id": 1, "name": "first", "val": "1", "group": "2"}, {"id": 2, "name": "second", "val": "15", "group": "1"}, {"id": 3, "name": "second", "val": "5", "group": "2"}]'
+     // var links = '[{"source": 1, "target": 2}]'
+
+      console.log('I was clicked at: ', evt.detail.intersection.point);
+      $('#graph').attr('forcegraph', 'nodes:' + nodes + '; links: ' + links + "; " + forcegraph_attributes);
+    });
+  }
+});
+
+
+</script>
+  </head>
+  <body>
+    <!--<a-scene stats arjs>-->
+    <a-scene stats>
+      <a-camera  wasd-controls="fly: true; acceleration: 600" position="0 0 100">
+        <a-cursor color="lavender" opacity="0.5" fuse="true" fuseTimeout="250"></a-cursor>
+      </a-camera>
+      <a-sky color="#002"></a-sky>
+<!--<a-box color="tomato" depth="2" height="2" width="2" cursor-listener></a-box>-->
+        <a-text cursor-listener value="AltvDV" position="-10 0 0" scale="10 10 1" ></a-text>
+        <a-text cursor-listener value="AO" position="-10 10 0" scale="10 10 1" ></a-text>
+        <a-text cursor-listener value="EntflechtG" position="-10 -10 0" scale="10 10 1" ></a-text>
+
+
+      <a-entity id="graph" ></a-entity>
+    </a-scene>
+
+
+  </body>
+</html>
