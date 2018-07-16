@@ -24,7 +24,7 @@
             var group = Math.floor(Math.random()*3);
             var a = Math.floor(Math.random() * amount);
             var b = Math.floor(Math.random() * 40);
-            nodes += "{\"id\":\""+i+"\", \"size\":\""+size+"\", \"group\":\""+group+"\"},";
+            nodes += "{\"id\":\""+i+"\", \"val\":\""+size+"\", \"group\":\""+group+"\"},";
             links += "{\"source\": \""+a+"\", \"target\": \""+b+"\"},";
         }
         nodes = "[" + nodes.substring(0, nodes.length-1) + "]" ;
