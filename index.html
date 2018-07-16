@@ -6,7 +6,6 @@
     <script src='https://code.jquery.com/jquery-3.3.1.min.js'></script>
     <!--<script src="https://cdn.rawgit.com/jeromeetienne/AR.js/1.5.0/aframe/build/aframe-ar.js"> </script>-->
  <style>
-  a-scene { display: block; width: 50%; }
   </style>
  <script>
 
@@ -47,7 +46,7 @@
   </head>
   <body>
     <!--<a-scene stats arjs>-->
-    <a-scene stats embedded>
+    <a-scene stats >
       <a-camera  wasd-controls="fly: true; acceleration: 600" position="0 0 100">
         <a-cursor color="lavender" opacity="0.5" fuse="true" fuseTimeout="250"></a-cursor>
       </a-camera>
